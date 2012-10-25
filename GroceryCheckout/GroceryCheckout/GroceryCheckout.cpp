@@ -4,12 +4,15 @@
 #include "stdafx.h"
 #include "fileHandler.h"
 #include "product.h"
+#include "DuplicateProductError.h"
+#include "NotInInventoryError.h"
+#include "NotInSpecifiedRangeError.h"
 
 using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	//get file handlers
+	//**get file handlers**
 	fileHandler inventoryIn("Invent.dat");
 	fileHandler receiptOut("Receipts.out");
 	receiptOut.getFile(); //create new reciept file
@@ -20,9 +23,29 @@ int _tmain(int argc, _TCHAR* argv[])
 	vector<string> inventOut;
 	vector<string> inventClean;
 
-	//if file contains duplication dont add second entry to storage
-
-	//write error out to reciept
+	//**process inventory**
+	//iterate through inventory from file
+	for (size_t i = 0; i < inventToBeProc.size(); i++)
+	{
+		//check for duplication of items
+		for (size_t j = 0; j < inventClean.size(); j++)
+		{
+			//compare product number from file to product number stored in clean inventory
+			if (inventClean[j].compare(0, 5, inventToBeProc[i], 0, 5) != 0)
+			{
+				//push clean items onto stores
+				inventClean.push_back(inventToBeProc[i]);
+				inventOut.push_back(inventToBeProc[i]);
+			} else {
+				//if file contains duplication dont add second entry to storage
+				//write error out to reciept
+				inventOut.push_back("*** duplicate item removed ***");
+				//through exception, would like to pass product number to error class
+				throw DuplicateProductError();
+				//throw DuplicateProductError(inventToBeProc[i].substr(0, 5));
+			}
+		}
+	}
 
 	//dump inventory vector contents to output file???
 	//not sure why, just do it.
