@@ -6,6 +6,9 @@
     <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:product.h" caret="373" fromTop="24" />
     <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:fileHandler.cpp" caret="1366" fromTop="31" />
     <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:GroceryCheckout.cpp" caret="241" fromTop="11" />
+    <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:NotInSpecifiedRangeError.h" caret="193" fromTop="8" />
+    <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:NotInInventoryError.h" caret="161" fromTop="8" />
+    <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:DuplicateProductError.h" caret="185" fromTop="8" />
   </RecentFiles>
   <RecentEdits>
     <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:fileHandler.h" caret="964" fromTop="27" />
@@ -14,5 +17,8 @@
     <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:product.cpp" caret="586" fromTop="31" />
     <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:fileHandler.cpp" caret="1366" fromTop="31" />
     <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:GroceryCheckout.cpp" caret="374" fromTop="14" />
+    <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:NotInSpecifiedRangeError.h" caret="193" fromTop="8" />
+    <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:NotInInventoryError.h" caret="161" fromTop="8" />
+    <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:DuplicateProductError.h" caret="185" fromTop="8" />
   </RecentEdits>
 </RecentFiles>
