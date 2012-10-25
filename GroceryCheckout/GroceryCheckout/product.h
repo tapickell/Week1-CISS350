@@ -3,7 +3,7 @@ class product
 {
 public:
 	product(void);
-	product(std::string, std::string, std::string, std::string);
+	product(std::string, std::string, std::string, std::string, int);
 	~product(void);
 
 	// setters 
@@ -24,6 +24,7 @@ private:
 	std::string descrip;
 	float price;
 	char taxable;
+	int times;
 
 };
 

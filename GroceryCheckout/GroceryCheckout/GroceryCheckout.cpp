@@ -50,23 +50,31 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 	}
 
-	//dump inventory vector contents to output file???
-	//not sure why, just do it.
+	//**echo print to file**
+	//dump inventory vector contents to output file && screen
 	receiptOut.putFile(inventOut);
+	for (size_t i = 0; i < inventOut.size(); i++)
+	{
+		cout << inventOut[i] << endl;
+	}
 
-	//convert from strings to products to make use of (ADT) product class
-	vector<product> productInventory = stringsToProducts(inventClean);
+	cout << endl << "Ready for orders:" << endl;
 
 	//**process order**
-	//create product storage
-	//prompt user for input
-	//if item number entered is not in inventory || if times is not within [1..100]
-		//write error to reciept and start prompt again
-	//push item to storage
+	bool keepGoing = true;
+	while (keepGoing)
+	{
+		//create product storage
+		 vector<product> order;
+		//prompt user for input
+		//if item number entered is not in inventory || if times is not within [1..100]
+			//write error to reciept and start prompt again
+		//push item to storage
 
-	//**output reciept**
-	//when order is complete output to recipt
+		//**output reciept**
+		//when order is complete output to recipt
 
+	}
 
 
 	cout << "it works duh!" << endl;
@@ -75,21 +83,14 @@ int _tmain(int argc, _TCHAR* argv[])
 }
 
 //convert from strings to products to make use of (ADT) product class
-vector<product> stringsToProducts(vector<string> &stringsIn)
+product stringsToProduct(string stringsIn, int times)
 {
-	vector<product> myProducts;
+	vector<string> myStack;
+	//split variables from string
+	stringstream myStr(stringsIn);
+	myStr >> myStack[0] >> myStack[1] >> myStack[2] >> myStack[3];
 
-	//get strings from vector
-	for (int i = 0; i < stringsIn.size(); i++)
-	{
-		//split string to variables using stream
-		vector<string> myStack;
-		stringstream myStr(stringsIn[i]);
-		myStr >> myStack[0] >> myStack[1] >> myStack[2] >> myStack[3];
-
-		//create new inventory product from variables
-		product myProduct = product(myStack[0], myStack[1], myStack[2], myStack[3]);
-		myProducts.push_back(myProduct);
-	}
-	return myProducts;
+	//create new inventory product from variables
+	product myProduct = product(myStack[0], myStack[1], myStack[2], myStack[3], times);
+	return myProduct;
 }
