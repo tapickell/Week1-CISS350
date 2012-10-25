@@ -57,13 +57,13 @@ int _tmain(int argc, _TCHAR* argv[])
 	for (size_t i = 0; i < inventOut.size(); i++)
 	{
 		cout << inventOut[i] << endl;
-	}
+	}//would like to pull this out into seprerate function to DRY it out
 
 	//prompt user for input
 	cout << endl << "Ready for orders." << endl;
 
 	//**process order**
-	vector<order> orders;
+	vector<order> orders; //could be used to expand program to have an end of shift totals printout
 	bool moreOrders = true;
 	while (moreOrders)
 	{
@@ -73,36 +73,68 @@ int _tmain(int argc, _TCHAR* argv[])
 		bool moreProducts = true;
 		while (moreProducts)
 		{
+			//variables to hold input
 			string number;
-			string quant;
+			int quant;
+
+			//prompt for product info from cashier
 			cout << "Enter product number and quantity:" << endl;
 			cin >> number >> quant;
 			cout << endl;
 
 			if (number.compare("0") != 0)
 			{
-				//if item number entered is not in inventory || if times is not within [1..100]
-					//write error to reciept and start prompt again
-				//push item to storage
-				myOrder.addToOrder(myProduct);
+				vector<string> recpt;
+				//check quantity range
+				if (quant > 0 && quant < 100)
+				{
+					//find product in inventory by product number
+
+					//if that item is in inventory
+
+						//push item to storage
+						//myOrder.addToOrder(myProduct);
+
+					//else throw product not in inv error
+
+				} else {
+					//if not in range add error message to recept and skip entry
+					recpt.push_back("*** quantity not in specified range ***");
+					//through exception, would like to pass product number to error class
+					throw NotInSpecifiedRangeError();
+					//throw NotInSpecifiedRangeError(quant);
+				}
+
 				//**output reciept**
 				//when order is complete output to receipt && screen
-			} else {
+				receiptOut.putFile(recpt);
+				for (size_t i = 0; i < recpt.size(); i++)
+				{
+					cout << recpt[i] << endl;
+				}//would like to pull this out into seprerate function to DRY it out
 
+			} else {
+				//done entering products for this order
+				//set flag to exit while loop
 				moreProducts = false;
 			}
 		}
 		
+		//add order to orders store
 		orders.push_back(myOrder);
 
-		//prompt cashier to create another order
+		//variable to hold input
 		string answer;
+
+		//prompt cashier to create another order
 		cout << "Would you like to enter another order?" << endl;
 		cin >> answer;
 		cout << endl;
 		//if done entering orders set flag to exit while loop
 		if (answer.compare("N"))
 		{
+			//exit with freindly message
+			cout << "Thank you for using the Pickle POS system" << endl << "Have a nice day" << endl;
 			moreOrders = false;
 		}
 
