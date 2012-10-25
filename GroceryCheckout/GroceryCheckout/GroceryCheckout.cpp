@@ -92,7 +92,8 @@ int _tmain(int argc, _TCHAR* argv[])
 
 					//if that item is in inventory
                                                 //create product passing in string from inventory and quantity
-						//push item to storage
+					        product myProduct = stringsToProduct(itemStr, quant);
+                                                //push item to storage
 						//myOrder.addToOrder(myProduct);
 
 					//else throw product not in inv error
