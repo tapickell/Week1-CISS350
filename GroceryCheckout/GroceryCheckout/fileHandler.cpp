@@ -62,7 +62,7 @@ vector<string> fileHandler::getFile()
 		ofstream newFile;
 		newFile.open(theFileName);
 		newFile.close();
-		cout << "Creating new file..." << endl;
+		//cout << "Creating new file..." << endl;
 		cout << endl;
 		inFile.open(theFileName);
 	}
@@ -76,7 +76,7 @@ each string on a separate line out to the file*/
 void fileHandler::putFile(vector<string> &fileStrings)
 {
 	ofstream outFile;
-	outFile.open(theFileName);
+	outFile.open(theFileName, ofstream::app); //add opening in append mode
 	for (size_t i = 0; i < fileStrings.size()-1; i++)
 	{
 		outFile << fileStrings[i] << "\n";
@@ -85,4 +85,3 @@ void fileHandler::putFile(vector<string> &fileStrings)
 	outFile << fileStrings[fileStrings.size()-1];
 	outFile.close();
 }
-/*Todd **************^   fileHandler.cpp   ^*********** 9/14/12 */
