@@ -85,13 +85,13 @@ int _tmain(int argc, _TCHAR* argv[])
 			if (number.compare("0") != 0)
 			{
 				vector<string> recpt;
-				//check quantity range
+				//check quantity range if not in range don't bother searching inventory
 				if (quant > 0 && quant < 100)
 				{
 					//find product in inventory by product number
 
 					//if that item is in inventory
-
+                                                //create product passing in string from inventory and quantity
 						//push item to storage
 						//myOrder.addToOrder(myProduct);
 
