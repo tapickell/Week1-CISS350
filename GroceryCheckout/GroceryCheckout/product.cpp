@@ -6,6 +6,10 @@ product::product(void)
 {
 }
 
+product::product(std::string val0, std::string val1, std::string val2, std::string val3)
+{
+
+}
 
 product::~product(void)
 {

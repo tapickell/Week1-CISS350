@@ -10,6 +10,9 @@
 
 using namespace std;
 
+//declarations
+vector<product> stringsToProducts(vector<string> &stringsIn);
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 	//**get file handlers**
@@ -49,6 +52,10 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	//dump inventory vector contents to output file???
 	//not sure why, just do it.
+	receiptOut.putFile(inventOut);
+
+	//convert from strings to products to make use of (ADT) product class
+	vector<product> productInventory = stringsToProducts(inventClean);
 
 	//**process order**
 	//create product storage
@@ -67,7 +74,22 @@ int _tmain(int argc, _TCHAR* argv[])
 	return 0;
 }
 
-	//**get inventory**
-	//take in inventory from file and store into vector for usage
-	//if file contains duplication dont add second entry to storage
-	//write error out to reciept
+//convert from strings to products to make use of (ADT) product class
+vector<product> stringsToProducts(vector<string> &stringsIn)
+{
+	vector<product> myProducts;
+
+	//get strings from vector
+	for (int i = 0; i < stringsIn.size(); i++)
+	{
+		//split string to variables using stream
+		vector<string> myStack;
+		stringstream myStr(stringsIn[i]);
+		myStr >> myStack[0] >> myStack[1] >> myStack[2] >> myStack[3];
+
+		//create new inventory product from variables
+		product myProduct = product(myStack[0], myStack[1], myStack[2], myStack[3]);
+		myProducts.push_back(myProduct);
+	}
+	return myProducts;
+}

@@ -3,6 +3,7 @@ class product
 {
 public:
 	product(void);
+	product(std::string, std::string, std::string, std::string);
 	~product(void);
 
 	// setters 
