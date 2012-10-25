@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "fileHandler.h"
 #include "product.h"
+#include "order.h"
 #include "DuplicateProductError.h"
 #include "NotInInventoryError.h"
 #include "NotInSpecifiedRangeError.h"
@@ -11,7 +12,7 @@
 using namespace std;
 
 //declarations
-vector<product> stringsToProducts(vector<string> &stringsIn);
+product stringsToProduct(string stringsIn, int times);
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -58,21 +59,52 @@ int _tmain(int argc, _TCHAR* argv[])
 		cout << inventOut[i] << endl;
 	}
 
-	cout << endl << "Ready for orders:" << endl;
+	//prompt user for input
+	cout << endl << "Ready for orders." << endl;
 
 	//**process order**
-	bool keepGoing = true;
-	while (keepGoing)
+	vector<order> orders;
+	bool moreOrders = true;
+	while (moreOrders)
 	{
 		//create product storage
-		 vector<product> order;
-		//prompt user for input
-		//if item number entered is not in inventory || if times is not within [1..100]
-			//write error to reciept and start prompt again
-		//push item to storage
+		order myOrder = order();
 
-		//**output reciept**
-		//when order is complete output to recipt
+		bool moreProducts = true;
+		while (moreProducts)
+		{
+			string number;
+			string quant;
+			cout << "Enter product number and quantity:" << endl;
+			cin >> number >> quant;
+			cout << endl;
+
+			if (number.compare("0") != 0)
+			{
+				//if item number entered is not in inventory || if times is not within [1..100]
+					//write error to reciept and start prompt again
+				//push item to storage
+				myOrder.addToOrder(myProduct);
+				//**output reciept**
+				//when order is complete output to receipt && screen
+			} else {
+
+				moreProducts = false;
+			}
+		}
+		
+		orders.push_back(myOrder);
+
+		//prompt cashier to create another order
+		string answer;
+		cout << "Would you like to enter another order?" << endl;
+		cin >> answer;
+		cout << endl;
+		//if done entering orders set flag to exit while loop
+		if (answer.compare("N"))
+		{
+			moreOrders = false;
+		}
 
 	}
 
