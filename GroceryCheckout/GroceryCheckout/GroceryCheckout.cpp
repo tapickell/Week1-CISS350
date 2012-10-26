@@ -27,6 +27,13 @@ int _tmain(int argc, _TCHAR* argv[])
 	vector<string> inventOut;
 	vector<string> inventClean;
 
+        //check inventory to be processed vector for contents
+        for (size_t i = 0; i < inventToBeProc.size(); i++)
+        {
+           cout << "inventory checkup" << endl;
+           cout << inventToBeProc[i] << endl;
+        }
+
 	//**process inventory**
 	//iterate through inventory from file
 	for (size_t i = 0; i < inventToBeProc.size(); i++)
