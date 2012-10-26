@@ -89,14 +89,25 @@ int _tmain(int argc, _TCHAR* argv[])
 				if (quant > 0 && quant < 100)
 				{
 					//find product in inventory by product number
+					for (size_t i = 0; i < inventClean.size(); i++)
+					{
+						int y = inventClean[i].find(number);
+						//if that product is in inventory found by product number
+						if (y > -1 && y < 6)
+						{
+							//create product passing in string from inventory and quantity
+							product myProduct = stringsToProduct(inventClean[i], quant);
+							//push item to storage
+							myOrder.addToOrder(myProduct);
+						} else {
+							//if product not found add error message to recept and skip entry
+							recpt.push_back("*** product number not in inventory ***");
+							//through exception, would like to pass product number to error class
+							throw NotInInventoryError();
+							//throw NotInInventoryError(inventClean[i].substr(0, 5));
+						}
 
-					//if that item is in inventory
-                                                //create product passing in string from inventory and quantity
-					        product myProduct = stringsToProduct(itemStr, quant);
-                                                //push item to storage
-						//myOrder.addToOrder(myProduct);
-
-					//else throw product not in inv error
+					}
 
 				} else {
 					//if not in range add error message to recept and skip entry
