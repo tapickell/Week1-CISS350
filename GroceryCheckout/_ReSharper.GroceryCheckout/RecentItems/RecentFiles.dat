@@ -4,15 +4,15 @@
     <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:NotInSpecifiedRangeError.h" caret="193" fromTop="8" />
     <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:DuplicateProductError.h" caret="392" fromTop="10" />
     <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:stdafx.h" caret="345" fromTop="15" />
-    <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:product.h" caret="455" fromTop="26" />
     <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:ReadMe.txt" caret="0" fromTop="0" />
-    <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:product.cpp" caret="233" fromTop="17" />
     <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:order.cpp" caret="348" fromTop="25" />
     <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:order.h" caret="156" fromTop="11" />
     <File id="7020124F-9FFC-4AC3-8F3D-AAB8E0240759/f:vector/l:c!?Program Files (x86)?Microsoft Visual Studio 11.0?VC?include?vector" caret="30300" fromTop="17" />
     <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:fileHandler.h" caret="213" fromTop="12" />
     <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:fileHandler.cpp" caret="1105" fromTop="28" />
-    <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:GroceryCheckout.cpp" caret="5047" fromTop="31" />
+    <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:GroceryCheckout.cpp" caret="3634" fromTop="0" />
+    <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:product.cpp" caret="935" fromTop="62" />
+    <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:product.h" caret="386" fromTop="20" />
   </RecentFiles>
   <RecentEdits>
     <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:fileHandler.h" caret="964" fromTop="27" />
@@ -20,11 +20,11 @@
     <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:NotInSpecifiedRangeError.h" caret="193" fromTop="8" />
     <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:NotInInventoryError.h" caret="161" fromTop="8" />
     <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:DuplicateProductError.h" caret="392" fromTop="10" />
-    <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:product.h" caret="455" fromTop="26" />
-    <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:product.cpp" caret="176" fromTop="8" />
     <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:order.cpp" caret="348" fromTop="25" />
     <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:order.h" caret="156" fromTop="11" />
     <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:fileHandler.cpp" caret="1105" fromTop="28" />
-    <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:GroceryCheckout.cpp" caret="4246" fromTop="17" />
+    <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:GroceryCheckout.cpp" caret="3634" fromTop="6" />
+    <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:product.h" caret="503" fromTop="28" />
+    <File id="1992D271-D856-48B1-84FA-9FDCE34FDD90/f:product.cpp" caret="935" fromTop="47" />
   </RecentEdits>
 </RecentFiles>

@@ -8,7 +8,11 @@ product::product(void)
 
 product::product(std::string val0, std::string val1, std::string val2, std::string val3, int val4)
 {
-
+	setProdNum(atoi(val0.c_str()));
+	setDescrip(val1);
+	setPrice(atof(val2.c_str()));
+	setTax(val3[0]);
+	setQuantity(val4);
 }
 
 product::~product(void)
@@ -32,6 +36,10 @@ void product::setTax(char tax)
 {
 	taxable = tax;
 }
+void product::setQuantity(int times)
+{
+	quantity = times;
+}
 
 // getters
 int product::getProdNum()
@@ -49,4 +57,8 @@ float product::getPrice()
 char product::getTax()
 {
 	return taxable;
+}
+int product::getQuantity()
+{
+	return quantity;
 }

@@ -11,12 +11,14 @@ public:
 	void setDescrip(std::string);
 	void setPrice(float);
 	void setTax(char);
+	void setQuantity(int);
 
 	// getters
 	int getProdNum();
 	std::string getDescrip();
 	float getPrice();
 	char getTax();
+	int getQuantity();
 
 
 private:
@@ -24,7 +26,7 @@ private:
 	std::string descrip;
 	float price;
 	char taxable;
-	int times;
+	int quantity;
 
 };
 

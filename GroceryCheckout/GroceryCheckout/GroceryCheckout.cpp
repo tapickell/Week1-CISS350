@@ -106,7 +106,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	while (moreOrders)
 	{
 		//create product storage
-		order myOrder = order();
+		order myOrder = order();   //*********  creating order  ***********//
 
 		bool moreProducts = true; //flag for exiting while loop
 		while (moreProducts)
@@ -141,7 +141,7 @@ int _tmain(int argc, _TCHAR* argv[])
 									//set flag
 									found = true;
 									//create product passing in string from inventory and quantity
-									product myProduct = stringsToProduct(inventClean[i], quant);
+									product myProduct = stringsToProduct(inventClean[i], quant);  //****** creating product *********//
 									//push item to storage
 									myOrder.addToOrder(myProduct);
 								}//end if
