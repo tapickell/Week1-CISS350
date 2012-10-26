@@ -57,21 +57,28 @@ int _tmain(int argc, _TCHAR* argv[])
 				}//end if
 			}//end for
 
-			if (!match)
+			try
 			{
-				//push clean items onto stores
-				inventClean.push_back(inventToBeProc[i]);
-				inventOut.push_back(inventToBeProc[i]);
-				cout << inventToBeProc[i] << " added to clean inventory from if" << endl;
-			} else {
-				cout << "hit else for match in vectors!" <<  endl;
+				if (!match)
+				{
+					//push clean items onto stores
+					inventClean.push_back(inventToBeProc[i]);
+					inventOut.push_back(inventToBeProc[i]);
+					cout << inventToBeProc[i] << " added to clean inventory from if" << endl;
+				} else {
+					cout << "hit else for match in vectors!" <<  endl;
+					//throw exception, would like to pass product number to error class
+					throw DuplicateProductError();
+					//throw DuplicateProductError(inventToBeProc[i].substr(0, 5));
+				}//end if else
+			}
+			catch (DuplicateProductError &e)
+			{
+				cout << "Exception: " << e.what() <<  endl;
 				//if file contains duplication dont add second entry to storage
 				//write error out to reciept
 				inventOut.push_back("*** duplicate item removed ***");
-				//throw exception, would like to pass product number to error class
-				throw DuplicateProductError();
-				//throw DuplicateProductError(inventToBeProc[i].substr(0, 5));
-			}//end if else
+			}
 
 		} else {
 			//push clean item onto stores
@@ -95,13 +102,13 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	//**process order**
 	vector<order> orders; //could be used to expand program to have an end of shift totals printout
-	bool moreOrders = true;
+	bool moreOrders = true; //flag for exiting while loop
 	while (moreOrders)
 	{
 		//create product storage
 		order myOrder = order();
 
-		bool moreProducts = true;
+		bool moreProducts = true; //flag for exiting while loop
 		while (moreProducts)
 		{
 			//variables to hold input
@@ -116,37 +123,56 @@ int _tmain(int argc, _TCHAR* argv[])
 			if (number.compare("0") != 0)
 			{
 				vector<string> recpt;
-				//check quantity range if not in range don't bother searching inventory
-				if (quant > 0 && quant < 100)
+				try //for NotInSpecifiedRangeError 
 				{
-					//find product in inventory by product number
-					for (size_t i = 0; i < inventClean.size(); i++)
+					//check quantity range if not in range don't bother searching inventory
+					if (quant > 0 && quant < 100)
 					{
-						int y = inventClean[i].find(number);
-						//if that product is in inventory found by product number
-						if (y > -1 && y < 6)
+						bool found = false;
+						//find product in inventory by product number
+						try
 						{
-							//create product passing in string from inventory and quantity
-							product myProduct = stringsToProduct(inventClean[i], quant);
-							//push item to storage
-							myOrder.addToOrder(myProduct);
-						} else {
+							for (size_t i = 0; i < inventClean.size(); i++)
+							{
+								int y = inventClean[i].find(number);
+								//if that product is in inventory found by product number
+								if (y > -1 && y < 6)
+								{
+									//set flag
+									found = true;
+									//create product passing in string from inventory and quantity
+									product myProduct = stringsToProduct(inventClean[i], quant);
+									//push item to storage
+									myOrder.addToOrder(myProduct);
+								}//end if
+							}//end for
+
+							if (!found)
+							{
+								//through exception, would like to pass product number to error class
+								throw NotInInventoryError();
+								//throw NotInInventoryError(inventClean[i].substr(0, 5));
+							}
+						}
+						catch (NotInInventoryError &e)
+						{
+							cout << "Exception: " << e.what() <<  endl;
 							//if product not found add error message to recept and skip entry
 							recpt.push_back("*** product number not in inventory ***");
-							//through exception, would like to pass product number to error class
-							throw NotInInventoryError();
-							//throw NotInInventoryError(inventClean[i].substr(0, 5));
 						}
 
-					}
-
-				} else {
+					} else {
+						//through exception, would like to pass product number to error class
+						throw NotInSpecifiedRangeError();
+						//throw NotInSpecifiedRangeError(quant);
+					}//end if else
+				}
+				catch (NotInSpecifiedRangeError &e)
+				{
+					cout << "Exception: " << e.what() <<  endl;
 					//if not in range add error message to recept and skip entry
 					recpt.push_back("*** quantity not in specified range ***");
-					//through exception, would like to pass product number to error class
-					throw NotInSpecifiedRangeError();
-					//throw NotInSpecifiedRangeError(quant);
-				}
+				}//end try catch
 
 				//**output reciept**
 				//when order is complete output to receipt && screen
