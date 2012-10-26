@@ -107,6 +107,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	{
 		//create product storage
 		order myOrder = order();   //*********  creating order  ***********//
+		vector<string> recpt;
 
 		bool moreProducts = true; //flag for exiting while loop
 		while (moreProducts)
@@ -122,7 +123,6 @@ int _tmain(int argc, _TCHAR* argv[])
 
 			if (number.compare("0") != 0)
 			{
-				vector<string> recpt;
 				try //for NotInSpecifiedRangeError 
 				{
 					//check quantity range if not in range don't bother searching inventory
@@ -142,6 +142,8 @@ int _tmain(int argc, _TCHAR* argv[])
 									found = true;
 									//create product passing in string from inventory and quantity
 									product myProduct = stringsToProduct(inventClean[i], quant);  //****** creating product *********//
+									//push item to receipt
+									recpt.push_back(myProduct.toString());
 									//push item to storage
 									myOrder.addToOrder(myProduct);
 								}//end if
@@ -174,21 +176,39 @@ int _tmain(int argc, _TCHAR* argv[])
 					recpt.push_back("*** quantity not in specified range ***");
 				}//end try catch
 
-				//**output reciept**
-				//when order is complete output to receipt && screen
-				receiptOut.putFile(recpt);
-				for (size_t i = 0; i < recpt.size(); i++)
-				{
-					cout << recpt[i] << endl;
-				}//would like to pull this out into seprerate function to DRY it out
-
 			} else {
 				//done entering products for this order
 				//set flag to exit while loop
 				moreProducts = false;
 			}
 		}
-		
+
+		//*** Print Order Here ***//
+		//when order is complete output to receipt && screen
+		//print receipt header
+		vector<string> header = myOrder.getReceiptHeader();
+		receiptOut.putFile(header);
+		for (size_t i = 0; i < header.size(); i++)
+		{
+			cout << header[i] << endl;
+		}
+
+		//print products
+		receiptOut.putFile(recpt);
+		for (size_t i = 0; i < recpt.size(); i++)
+		{
+			cout << recpt[i] << endl;
+		}//would like to pull this out into seprerate function to DRY it out
+
+		//print receipt footer
+		vector<string> footer = myOrder.getReceiptFooter();
+		receiptOut.putFile(footer);
+		for (size_t i = 0; i < footer.size(); i++)
+		{
+			cout << footer[i] << endl;
+		}
+		cout << endl;
+
 		//add order to orders store
 		orders.push_back(myOrder);
 
@@ -218,10 +238,10 @@ int _tmain(int argc, _TCHAR* argv[])
 //convert from strings to products to make use of (ADT) product class
 product stringsToProduct(string stringsIn, int times)
 {
-	vector<string> myStack;
+	vector<string> myStack (4);
 	//split variables from string
 	stringstream myStr(stringsIn);
-	myStr >> myStack[0] >> myStack[1] >> myStack[2] >> myStack[3];
+	myStr >> myStack[0] >> myStack[1] >> myStack[2] >> myStack[3]; //**** CAUSED VECTOR OUT OF RANGE ****//
 
 	//create new inventory product from variables
 	product myProduct = product(myStack[0], myStack[1], myStack[2], myStack[3], times);

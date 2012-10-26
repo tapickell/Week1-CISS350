@@ -20,6 +20,7 @@ public:
 	char getTax();
 	int getQuantity();
 
+	std::string toString();
 
 private:
 	int prodNum;

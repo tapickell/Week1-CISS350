@@ -82,7 +82,7 @@ void fileHandler::putFile(vector<string> &fileStrings)
 	for (size_t i = 0; i < fileStrings.size(); i++) //removed -1 from fileStrings.size()
 	{
 		outFile << fileStrings[i] << "\n";
-		cout << fileStrings[i] << endl;
+		//cout << fileStrings[i] << endl;
 	}
 	//to prevent from adding extra \n every time program runs
 	//outFile << fileStrings[fileStrings.size()-1];

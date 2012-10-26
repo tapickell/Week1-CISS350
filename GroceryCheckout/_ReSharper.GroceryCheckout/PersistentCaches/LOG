@@ -1,13 +1,5 @@
-2012/10/26-09:37:35.345 227c Recovering log #12
-2012/10/26-09:37:35.345 227c Level-0 table #14: started
-2012/10/26-09:37:35.412 227c Level-0 table #14: 820 bytes OK
-2012/10/26-09:37:35.454 227c Delete type=0 #12
-2012/10/26-09:37:35.454 227c Delete type=3 #10
-2012/10/26-09:37:35.455 af8 Compacting 4@0 + 0@1 files
-2012/10/26-09:37:35.493 af8 Generated table #16: 25 keys, 2799 bytes
-2012/10/26-09:37:35.493 af8 Compacted 4@0 + 0@1 files => 2799 bytes
-2012/10/26-09:37:35.530 af8 Delete type=2 #5
-2012/10/26-09:37:35.530 af8 Delete type=2 #8
-2012/10/26-09:37:35.530 af8 Delete type=2 #11
-2012/10/26-09:37:35.530 af8 Delete type=2 #14
-2012/10/26-09:37:35.530 af8 compacted to: files[ 0 1 0 0 0 0 0 ]
+2012/10/26-12:49:47.271 196c Recovering log #15
+2012/10/26-12:49:47.271 196c Level-0 table #18: started
+2012/10/26-12:49:47.344 196c Level-0 table #18: 1095 bytes OK
+2012/10/26-12:49:47.412 196c Delete type=0 #15
+2012/10/26-12:49:47.412 196c Delete type=3 #13

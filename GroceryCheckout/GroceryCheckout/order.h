@@ -6,12 +6,15 @@ public:
 	~order(void);
 
 	void addToOrder(product);
-	std::vector<std::string> getReceipt();
+	std::vector<std::string> getReceiptHeader();
+	std::vector<std::string> getReceiptFooter();
 
 private:
-	//std::vector<product> products;  //caused errors vector out of bounds. 
 	float sub;
-	float tax;
+	float taxes;
 	float total;
+	double tax;
+	std::string check;
+	static int orderNumber;
 };
 

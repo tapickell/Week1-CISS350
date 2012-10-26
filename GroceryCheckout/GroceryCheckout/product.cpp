@@ -62,3 +62,10 @@ int product::getQuantity()
 {
 	return quantity;
 }
+
+std::string product::toString()
+{
+	//create string for product that will display on receipt
+	std::string stringOut;
+	return stringOut;
+}
