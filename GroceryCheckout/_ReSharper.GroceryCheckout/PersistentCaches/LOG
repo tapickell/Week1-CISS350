@@ -1,5 +1,5 @@
-2012/10/25-20:56:41.051 1fe0 Recovering log #3
-2012/10/25-20:56:41.052 1fe0 Level-0 table #5: started
-2012/10/25-20:56:41.121 1fe0 Level-0 table #5: 3248 bytes OK
-2012/10/25-20:56:41.160 1fe0 Delete type=0 #3
-2012/10/25-20:56:41.160 1fe0 Delete type=3 #2
+2012/10/26-07:19:30.130 8ec Recovering log #6
+2012/10/26-07:19:30.130 8ec Level-0 table #8: started
+2012/10/26-07:19:30.191 8ec Level-0 table #8: 919 bytes OK
+2012/10/26-07:19:30.232 8ec Delete type=0 #6
+2012/10/26-07:19:30.233 8ec Delete type=3 #4

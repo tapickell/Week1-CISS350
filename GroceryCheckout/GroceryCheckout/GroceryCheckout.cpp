@@ -27,51 +27,64 @@ int _tmain(int argc, _TCHAR* argv[])
 	vector<string> inventOut;
 	vector<string> inventClean;
 
-        //check inventory to be processed vector for contents
-        for (size_t i = 0; i < inventToBeProc.size(); i++)
-        {
-           cout << "inventory checkup" << endl;
-           cout << inventToBeProc[i] << endl;
-        }
+    //check inventory to be processed vector for contents
+	cout << endl;
+	cout << "inventory checkup" << endl;
+    for (size_t i = 0; i < inventToBeProc.size(); i++)
+    {
+        cout << inventToBeProc[i] << endl;
+    }
 
 	//**process inventory**
 	//iterate through inventory from file
 	for (size_t i = 0; i < inventToBeProc.size(); i++)
 	{
+		cout << endl;
 		cout << "Inventory to be proc:" << inventToBeProc[i] << endl;
 		//check for duplication of items if there is anything in clean
 		if (!inventClean.empty())
 		{
-			for (size_t j = 0; j < inventClean.size(); j++)
+			//****** ISSUE: is causing incremental increase in products being added to clean ********// RESOLVED 10-26-12
+			cout << "InventClean size: " << inventClean.size() << endl;
+			bool match = false;
+			for (size_t j = 0; j < inventClean.size(); j++) 
 			{
 				//compare product number from file to product number stored in clean inventory
-				if (inventClean[j].compare(0, 5, inventToBeProc[i], 0, 5) != 0)
+				if (inventClean[j].compare(0, 5, inventToBeProc[i], 0, 5) == 0)
 				{
-					//push clean items onto stores
-					inventClean.push_back(inventToBeProc[i]);
-					//inventOut.push_back(inventToBeProc[i]);
-					cout << inventToBeProc[i] << " added to clean inventory" << endl;
-				} else {
-					//if file contains duplication dont add second entry to storage
-					//write error out to reciept
-					//inventOut.push_back("*** duplicate item removed ***");
-					//through exception, would like to pass product number to error class
-					throw DuplicateProductError();
-					//throw DuplicateProductError(inventToBeProc[i].substr(0, 5));
-				}
-			}
+					//if match found
+					match = true;
+				}//end if
+			}//end for
+
+			if (!match)
+			{
+				//push clean items onto stores
+				inventClean.push_back(inventToBeProc[i]);
+				inventOut.push_back(inventToBeProc[i]);
+				cout << inventToBeProc[i] << " added to clean inventory from if" << endl;
+			} else {
+				cout << "hit else for match in vectors!" <<  endl;
+				//if file contains duplication dont add second entry to storage
+				//write error out to reciept
+				inventOut.push_back("*** duplicate item removed ***");
+				//throw exception, would like to pass product number to error class
+				throw DuplicateProductError();
+				//throw DuplicateProductError(inventToBeProc[i].substr(0, 5));
+			}//end if else
 
 		} else {
 			//push clean item onto stores
 			inventClean.push_back(inventToBeProc[i]);
-			//inventOut.push_back(inventToBeProc[i]);
-			cout << inventToBeProc[i] << " added to clean inventory" << endl;
-		}
-	}
+			inventOut.push_back(inventToBeProc[i]);
+			cout << inventToBeProc[i] << " added to clean inventory from else" << endl;
+		}//end if else
+	}//end for
 
 	//**echo print to file**
 	//dump inventory vector contents to output file && screen
-	receiptOut.putFile(inventOut);
+	//receiptOut.putFile(inventOut); *************** UNCOMMENT AFTER TESTING IS READY ********************
+	cout << endl;
 	for (size_t i = 0; i < inventOut.size(); i++)
 	{
 		cout << "Inventory out " << inventOut[i] << endl; //not printing out to screen

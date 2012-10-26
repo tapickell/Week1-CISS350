@@ -50,6 +50,7 @@ vector<string> fileHandler::getFile()
 	{
 		cout << "Getting file..." << endl;
 		cout << endl;
+		cout << "Contents of file: " << theFileName << endl;
 		while(!inFile.eof())
 		{
 			getline(inFile, fileLine);
