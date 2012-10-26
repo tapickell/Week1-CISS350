@@ -49,12 +49,12 @@ int _tmain(int argc, _TCHAR* argv[])
 				{
 					//push clean items onto stores
 					inventClean.push_back(inventToBeProc[i]);
-					inventOut.push_back(inventToBeProc[i]);
+					//inventOut.push_back(inventToBeProc[i]);
 					cout << inventToBeProc[i] << " added to clean inventory" << endl;
 				} else {
 					//if file contains duplication dont add second entry to storage
 					//write error out to reciept
-					inventOut.push_back("*** duplicate item removed ***");
+					//inventOut.push_back("*** duplicate item removed ***");
 					//through exception, would like to pass product number to error class
 					throw DuplicateProductError();
 					//throw DuplicateProductError(inventToBeProc[i].substr(0, 5));
@@ -64,7 +64,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		} else {
 			//push clean item onto stores
 			inventClean.push_back(inventToBeProc[i]);
-			inventOut.push_back(inventToBeProc[i]);
+			//inventOut.push_back(inventToBeProc[i]);
 			cout << inventToBeProc[i] << " added to clean inventory" << endl;
 		}
 	}
