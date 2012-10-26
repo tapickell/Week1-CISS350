@@ -23,5 +23,6 @@ void order::addToOrder(product)
 std::vector<std::string> order::getReceipt()
 {
 	std::vector<std::string> myVector;
+	myVector.push_back("----------------------------");
 	return myVector;
 }

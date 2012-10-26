@@ -48,12 +48,13 @@ vector<string> fileHandler::getFile()
 	inFile.open(theFileName);
 	if (inFile.is_open())
 	{
-		//cout << "Getting file..." << endl;
+		cout << "Getting file..." << endl;
 		cout << endl;
 		while(!inFile.eof())
 		{
 			getline(inFile, fileLine);
 			document.push_back(fileLine);
+			cout << fileLine << endl;
 		}
 	} else {
 		//TODO
@@ -62,7 +63,7 @@ vector<string> fileHandler::getFile()
 		ofstream newFile;
 		newFile.open(theFileName);
 		newFile.close();
-		//cout << "Creating new file..." << endl;
+		cout << "Creating new file..." << endl;
 		cout << endl;
 		inFile.open(theFileName);
 	}
@@ -77,11 +78,12 @@ void fileHandler::putFile(vector<string> &fileStrings)
 {
 	ofstream outFile;
 	outFile.open(theFileName, ofstream::app); //add opening in append mode
-	for (size_t i = 0; i < fileStrings.size()-1; i++)
+	for (size_t i = 0; i < fileStrings.size(); i++) //removed -1 from fileStrings.size()
 	{
 		outFile << fileStrings[i] << "\n";
+		cout << fileStrings[i] << endl;
 	}
 	//to prevent from adding extra \n every time program runs
-	outFile << fileStrings[fileStrings.size()-1];
+	//outFile << fileStrings[fileStrings.size()-1];
 	outFile.close();
 }

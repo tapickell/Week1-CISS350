@@ -9,7 +9,7 @@ public:
 	std::vector<std::string> getReceipt();
 
 private:
-	std::vector<product> products;
+	//std::vector<product> products;
 	float sub;
 	float tax;
 	float total;
