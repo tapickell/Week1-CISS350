@@ -48,14 +48,14 @@ vector<string> fileHandler::getFile()
 	inFile.open(theFileName);
 	if (inFile.is_open())
 	{
-		cout << "Getting file..." << endl;
-		cout << endl;
-		cout << "Contents of file: " << theFileName << endl;
+		//cout << "Getting file..." << endl;
+		//cout << endl;
+		//cout << "From File: " << theFileName << endl;
 		while(!inFile.eof())
 		{
 			getline(inFile, fileLine);
 			document.push_back(fileLine);
-			cout << fileLine << endl;
+			//cout << fileLine << endl;
 		}
 	} else {
 		//TODO
@@ -64,8 +64,8 @@ vector<string> fileHandler::getFile()
 		ofstream newFile;
 		newFile.open(theFileName);
 		newFile.close();
-		cout << "Creating new file..." << endl;
-		cout << endl;
+		//cout << "Creating new file..." << endl;
+		//cout << endl;
 		inFile.open(theFileName);
 	}
 	inFile.close();

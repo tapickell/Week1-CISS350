@@ -28,24 +28,24 @@ int _tmain(int argc, _TCHAR* argv[])
 	vector<string> inventClean;
 
     //check inventory to be processed vector for contents
-	cout << endl;
-	cout << "inventory checkup" << endl;
-    for (size_t i = 0; i < inventToBeProc.size(); i++)
-    {
-        cout << inventToBeProc[i] << endl;
-    }
+	//cout << endl;
+	//cout << "inventory checkup" << endl;
+    //for (size_t i = 0; i < inventToBeProc.size(); i++)
+    //{
+    //    cout << inventToBeProc[i] << endl;
+    //}
 
 	//**process inventory**
 	//iterate through inventory from file
 	for (size_t i = 0; i < inventToBeProc.size(); i++)
 	{
-		cout << endl;
-		cout << "Inventory to be proc:" << inventToBeProc[i] << endl;
+		//cout << endl;
+		//cout << "Inventory to be proc:" << inventToBeProc[i] << endl;
 		//check for duplication of items if there is anything in clean
 		if (!inventClean.empty())
 		{
 			//****** ISSUE: is causing incremental increase in products being added to clean ********// RESOLVED 10-26-12
-			cout << "InventClean size: " << inventClean.size() << endl;
+			//cout << "InventClean size: " << inventClean.size() << endl;
 			bool match = false;
 			for (size_t j = 0; j < inventClean.size(); j++) 
 			{
@@ -64,9 +64,9 @@ int _tmain(int argc, _TCHAR* argv[])
 					//push clean items onto stores
 					inventClean.push_back(inventToBeProc[i]);
 					inventOut.push_back(inventToBeProc[i]);
-					cout << inventToBeProc[i] << " added to clean inventory from if" << endl;
+					//cout << inventToBeProc[i] << " added to clean inventory from if" << endl;
 				} else {
-					cout << "hit else for match in vectors!" <<  endl;
+					//cout << "hit else for match in vectors!" <<  endl;
 					//throw exception, would like to pass product number to error class
 					throw DuplicateProductError();
 					//throw DuplicateProductError(inventToBeProc[i].substr(0, 5));
@@ -87,18 +87,18 @@ int _tmain(int argc, _TCHAR* argv[])
 			//push clean item onto stores
 			inventClean.push_back(inventToBeProc[i]);
 			inventOut.push_back(inventToBeProc[i]);
-			cout << inventToBeProc[i] << " added to clean inventory from else" << endl;
+			//cout << inventToBeProc[i] << " added to clean inventory from else" << endl;
 		}//end if else
 	}//end for
 
 	//**echo print to file**
 	//dump inventory vector contents to output file && screen
-	//receiptOut.putFile(inventOut); *************** UNCOMMENT AFTER TESTING IS READY ********************
-	cout << endl;
-	for (size_t i = 0; i < inventOut.size(); i++)
-	{
-		cout << "Inventory out " << inventOut[i] << endl; //not printing out to screen
-	}//would like to pull this out into seprerate function to DRY it out
+	receiptOut.putFile(inventOut); //*************** UNCOMMENT AFTER TESTING IS READY ********************//
+	//cout << endl;
+	//for (size_t i = 0; i < inventOut.size(); i++)
+	//{
+	//	cout << "Inventory out " << inventOut[i] << endl; //not printing out to screen
+	//}//would like to pull this out into seprerate function to DRY it out
 
 	//prompt user for input
 	cout << endl << "Ready for orders." << endl;
