@@ -50,6 +50,11 @@ std::string product::getDescrip()
 {
 	return descrip;
 }
+float product::getTotalPrice()
+{
+	float totalPrice = price * quantity;
+	return totalPrice;
+}
 float product::getPrice()
 {
 	return price;
@@ -67,5 +72,23 @@ std::string product::toString()
 {
 	//create string for product that will display on receipt
 	std::string stringOut;
+	stringOut = stringOut.append(getDescrip());
+	stringOut = stringOut.append(" ");
+	std::stringstream is;
+	is << getQuantity();
+	stringOut = stringOut.append(is.str());
+	stringOut = stringOut.append(" @ ");
+	std::stringstream fs;
+	fs << getPrice();
+	stringOut = stringOut.append(fs.str());
+	stringOut = stringOut.append(" ");
+	std::stringstream tfs;
+	tfs << getTotalPrice();
+	stringOut = stringOut.append(tfs.str());
+	std::string check = "T";
+	if (getTax() == check[0])
+	{
+		stringOut = stringOut.append(" TX ");
+	}
 	return stringOut;
 }

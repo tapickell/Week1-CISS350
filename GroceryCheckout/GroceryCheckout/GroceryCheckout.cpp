@@ -77,7 +77,10 @@ int _tmain(int argc, _TCHAR* argv[])
 				cout << "Exception: " << e.what() <<  endl;
 				//if file contains duplication dont add second entry to storage
 				//write error out to reciept
-				inventOut.push_back("*** duplicate item removed ***");
+				string errorString = "*** Duplicate ";
+				errorString = errorString.append(inventToBeProc[i].substr(0,5));
+				errorString = errorString.append(" in inventory file ***");
+				inventOut.push_back(errorString);
 			}
 
 		} else {
@@ -160,7 +163,10 @@ int _tmain(int argc, _TCHAR* argv[])
 						{
 							cout << "Exception: " << e.what() <<  endl;
 							//if product not found add error message to recept and skip entry
-							recpt.push_back("*** product number not in inventory ***");
+							string errorStrng = "*** item ";
+							errorStrng = errorStrng.append(number);
+							errorStrng = errorStrng.append(" not in invntory ***");
+							recpt.push_back(errorStrng);
 						}
 
 					} else {
@@ -173,7 +179,12 @@ int _tmain(int argc, _TCHAR* argv[])
 				{
 					cout << "Exception: " << e.what() <<  endl;
 					//if not in range add error message to recept and skip entry
-					recpt.push_back("*** quantity not in specified range ***");
+					string errorString = "*** ";
+					stringstream stupidconversions;
+					stupidconversions << quant;
+					errorString = errorString.append(stupidconversions.str());
+					errorString = errorString.append(" not in specified range ***");
+					recpt.push_back(errorString);
 				}//end try catch
 
 			} else {
@@ -216,7 +227,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		string answer;
 
 		//prompt cashier to create another order
-		cout << "Would you like to enter another order?" << endl;
+		cout << "Would you like to enter another order?  [Y/N]" << endl;
 		cin >> answer;
 		cout << endl;
 		//if done entering orders set flag to exit while loop
@@ -230,7 +241,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 
 
-	cout << "it works duh!" << endl;
+	cout << endl;
 	system("pause");
 	return 0;
 }

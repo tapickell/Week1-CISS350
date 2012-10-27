@@ -16,6 +16,7 @@ public:
 	// getters
 	int getProdNum();
 	std::string getDescrip();
+	float getTotalPrice();
 	float getPrice();
 	char getTax();
 	int getQuantity();

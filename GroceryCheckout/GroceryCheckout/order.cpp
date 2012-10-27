@@ -11,22 +11,23 @@ order::order(void)
 	taxes = 0.0;
 	total = 0.0;
 	tax = 0.075;
-	std::string check = "T";
+	check = "T";
 	++orderNumber;
 }
 
 
 order::~order(void)
 {
-	--orderNumber;
+	//--orderNumber;
 }
 
 void order::addToOrder(product myProd)
 {
-	sub += myProd.getPrice();
+	sub += myProd.getTotalPrice();
 	if (myProd.getTax() == check[0])
 	{
-		taxes += (myProd.getPrice() * tax); // may need to make sure rounds to 2 decimal places
+		taxes += (myProd.getTotalPrice() * tax); // may need to make sure rounds to 2 decimal places
+		//std::cout << "TAXES: " << taxes << std::endl;
 	}
 }
 
