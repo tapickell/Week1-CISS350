@@ -5,6 +5,7 @@
 #include "fileHandler.h"
 #include "product.h"
 #include "order.h"
+#include "TestFailed.h"
 #include "DuplicateProductError.h"
 #include "NotInInventoryError.h"
 #include "NotInSpecifiedRangeError.h"
@@ -13,10 +14,53 @@ using namespace std;
 
 //declarations
 product stringsToProduct(string stringsIn, int times);
+bool createProductWithValidData();
+bool createProductWithBadData();
+bool createOrderWithGoodData();
+bool createOrderWithBadData();
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	//**get file handlers**
+		//**** RUN TESTS ****//
+	//wasn't absolutley sure how to do this in C++
+	//Visual Studio wouldn't let me do Unit Tests 
+	//or any testing so I just made up my own
+	//not quite RSpec && Cucumber but for these
+	//purposes it will do.
+	try
+	{
+		if (!createProductWithValidData())
+		{
+			cerr << "createProductWithValidData TEST_FAILED!" << endl;
+			throw TestFailed();
+		}
+		if (!createProductWithBadData())
+		{
+			cerr << "createProductWithBadData TEST_FAILED!" << endl;
+			throw TestFailed();
+		}
+		if (!createOrderWithGoodData())
+		{
+			cerr << "createOrderWithGoodData TEST_FAILED!" << endl;
+			throw TestFailed();
+		}
+		if (!createOrderWithBadData())
+		{
+			cerr << "createOrderWithBadData TEST_FAILED!" << endl;
+			throw TestFailed();
+		}
+	}
+	catch (TestFailed &e)
+	{
+		cerr << e.what() << endl;
+		cerr << "Exiting Program!" << endl;
+		cout << endl;
+		system("pause");
+		return 1;
+	}
+
+
+	/**get file handlers**/
 	fileHandler inventoryIn("Invent.dat");
 	fileHandler receiptOut("Receipts.out");
 	receiptOut.getFile(); //create new reciept file
@@ -257,4 +301,64 @@ product stringsToProduct(string stringsIn, int times)
 	//create new inventory product from variables
 	product myProduct = product(myStack[0], myStack[1], myStack[2], myStack[3], times);
 	return myProduct;
+}
+
+
+//*****    FOR TESTING PRODUCT CLASS    *******//
+bool createProductWithValidData()
+{
+	bool passed = false;
+	product testProduct = stringsToProduct("11110 pie-shells 0.99 N", 3);
+	if (testProduct.toString().compare("pie-shells 3 @ 0.99 2.97") == 0)
+	{
+		passed = true;
+	}
+	return passed;
+}
+
+bool createProductWithBadData()
+{
+	bool failed = false;
+	product testProduct = stringsToProduct("pie-shells 3 @ 0.99 2.97", 2);
+	if (testProduct.toString().compare("pie-shells 3 @ 0.99 2.97") != 0)
+	{
+		failed = true;
+	}
+	return failed;
+}
+
+bool createOrderWithGoodData()
+{
+	bool passed = false;
+	product prod1 = stringsToProduct("11012 gallon-milk 1.99 N", 2);
+	product prod2 = stringsToProduct("20115 laundry-soap 3.60 T", 3);
+	product prod3 = stringsToProduct("11014 butter 2.59 N", 1);
+	order testOrder;
+	testOrder.addToOrder(prod1);
+	testOrder.addToOrder(prod2);
+	testOrder.addToOrder(prod3);
+	vector<string> testFooter = testOrder.getReceiptFooter();
+	if ((testFooter[0].compare("Subtotal 17.37") == 0) && (testFooter[1].compare("Tax 0.81") == 0) && (testFooter[3].compare("Total 18.18") == 0))
+	{
+		passed = true;
+	}
+	return passed;
+}
+
+bool createOrderWithBadData()
+{
+	bool failed = false;
+	product prod1 = stringsToProduct("gallon-milk 11012 1.99 N", 2);
+	product prod2 = stringsToProduct("3.60 20115 laundry-soap T", 3);
+	product prod3 = stringsToProduct("butter 11014 2.59 N", 1);
+	order testOrder;
+	testOrder.addToOrder(prod1);
+	testOrder.addToOrder(prod2);
+	testOrder.addToOrder(prod3);
+	vector<string> testFooter = testOrder.getReceiptFooter();
+	if ((testFooter[0].compare("Subtotal 17.37") != 0) && (testFooter[1].compare("Tax 0.81") != 0) && (testFooter[3].compare("Total 18.18") != 0))
+	{
+		failed = true;
+	}
+	return failed;
 }
